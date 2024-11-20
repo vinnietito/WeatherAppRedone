@@ -91,3 +91,19 @@ input[type="submit"]:hover {
     margin-right: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+
+#weather-icon {
+    width: 80px;
+    height: 80px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bottom-section {
+    padding: 2rem;
+}
+
+.weather-details {
+    background-color: #262626;;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
