@@ -19,3 +19,9 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
+
+.top-section {
+    background: linear-gradient(135deg, #5c62a3, #30397e);
+    padding: 2rem;
+    color: #fff;
+}
