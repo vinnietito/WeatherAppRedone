@@ -6,7 +6,7 @@ const localTime = document.querySelector('.local-time');
 const weatherDegree = document.querySelector('.weather-degree');
 const weatherIcon = document.querySelector('#weather-icon');
 const windDirection = document.querySelector('#wind-direction');
-const windspeed = document.querySelector('#wind-speed');
+const windSpeed = document.querySelector('#wind-speed');
 const airHumidty = documen.querySelector('#air-humidity');
 const dew = document.querySelector('#dew');
 
@@ -40,3 +40,40 @@ function getLocalTime() {
 
     return localTime;
 }
+
+
+async function fetchweather(localTime) {
+    try{
+        const response =  await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${locationName}?key=5TJ24EHEMB5B7V7VEBJH8H3WZ`, {mode: 'cors'});
+        const weatherData = await response.json()
+        const processedData = processWeatherInfo(weatherData)
+        cityTitle.textContent = processedData.resolvedAddress;
+        cityDate.textContent = `${today}, ${month} ${year}`;
+        localTime.textContent = getLocalTime()
+        weatherDegree.textContent = `${processedData.currentConditions.temp} °F`;
+        weatherIcon.src = `icons/${processedData.currentConditions.icon}.png`;
+        windDirection.textContent = `${processedData.currentConditions.winddir} NW`;
+        windSpeed.textContent = `${processedData.currentConditions.windspeed} Km/h`;
+        airHumidty.textContent = `${processedData.currentConditions.humidty} %`;
+        dew.textContent = `${processedData.currentConditions.dew}`;
+    } catch (error) {
+        weatherDegree.textContent = error;
+    }
+}
+
+
+function processWeatherInfo(data) {
+    return {
+        address: data.address,
+        currentConditions: data.currentConditions,
+        days: data.days,
+        resolvedAddress: data.resolvedAddress
+    }
+}
+
+submitBtn.addEventListener('click', () => {
+    event.preventDefault();
+    fetchweather(searchedWord.value)
+})
+
+fetchweather('lagos');
