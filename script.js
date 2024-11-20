@@ -78,4 +78,4 @@ submitBtn.addEventListener('click', () => {
    fetchWeather(searchedWord.value)
 })
 
-fetchWeather('Nairobi');
+fetchWeather('Kenya');
